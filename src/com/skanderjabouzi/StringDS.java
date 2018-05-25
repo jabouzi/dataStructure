@@ -156,4 +156,20 @@ public class StringDS {
         return diff <= 1;
     }
 
+    boolean isStringRotation(String s1, String s2) {
+
+        String sub1, sub2;
+        for(int i = 0; i < s1.length(); i++) {
+
+            sub1 = s1.substring(0, i);
+            sub2 = s1.substring(i, s1.length());
+            System.out.println(sub2+sub1);
+            if (s2.equals(sub2+sub1)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

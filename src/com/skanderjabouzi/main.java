@@ -59,5 +59,15 @@ public class main {
         matrix.printMatrix(m);
         m = matrix.zeroMatrix(m);
         matrix.printMatrix(m);
+
+        StringDS stringDS = new StringDS();
+        String s1 = "waterbottle";
+        String s2 = "erbottlewat";
+        System.out.println(stringDS.isStringRotation(s1, s2));
+        System.out.println();
+        s1 = "waterbottle";
+        s2 = "erbottlewat";
+        System.out.println(stringDS.isStringRotation(s1, s2));
+        System.out.println();
     }
 }
