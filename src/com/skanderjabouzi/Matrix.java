@@ -49,32 +49,50 @@ public class Matrix {
         return matrixCopy;
     }
 
-    public int[][] rotateMatrix90degreClockWise(int[][] matrix) {
-        matrix = transposeMatrix(matrix);
-        matrix = reflectMatrix(matrix);
+
+    public int[][] rotateMatrix90degreClockWise(int[][] matrix, boolean outerOnly) {
+        matrix = transposeMatrix(matrix, outerOnly);
+        matrix = reflectMatrix(matrix, outerOnly);
 
         return matrix;
     };
 
-    public int[][] transposeMatrix(int[][] matrix) {
+    public int[][] transposeMatrix(int[][] matrix, boolean outerOnly) {
 
         int[][] matrixTransp = new int[matrix[0].length][matrix.length];
         for(int i = 0; i < matrix.length; i++) {
             for(int j = 0; j < matrix[0].length; j++) {
 //                System.out.println("i " + i + " j " + j);
-                matrixTransp[j][i] = matrix[i][j];
+                if (outerOnly) {
+                    if (i > 0  && i < matrix.length - 1 && j > 0 && j < matrix[0].length - 1) {
+                        matrixTransp[i][j] = matrix[i][j];
+                    } else {
+                        matrixTransp[j][i] = matrix[i][j];
+                    }
+                } else {
+                    matrixTransp[j][i] = matrix[i][j];
+                }
+
             }
         }
         return matrixTransp;
     }
 
-    public int[][] reflectMatrix(int[][] matrix) {
+    public int[][] reflectMatrix(int[][] matrix, boolean outerOnly) {
 
         int[][] matrixReflec = new int[matrix.length][matrix[0].length];
         for(int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length / 2; j++) {
 //                System.out.println("i " + i + " j " + j + " i2 " + i + " j2 " + (matrix[0].length - 1 - j));
-                swapRowColumn(matrix, matrixReflec, i, j, i, matrix[0].length - 1 - j);
+                if (outerOnly) {
+                    if (i > 0  && i < matrix.length - 1 && j > 0 && j < matrix[0].length - 1) {
+                        matrixReflec[i][j] = matrix[i][j];
+                    } else {
+                        swapRowColumn(matrix, matrixReflec, i, j, i, matrix[0].length - 1 - j);
+                    }
+                } else {
+                    swapRowColumn(matrix, matrixReflec, i, j, i, matrix[0].length - 1 - j);
+                }
             }
         }
         return matrixReflec;
