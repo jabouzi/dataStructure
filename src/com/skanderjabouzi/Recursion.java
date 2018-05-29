@@ -98,4 +98,29 @@ public class Recursion {
 
         return nums[i];
     }
+
+    int mult(int num, int mult) {
+        return multRecursive(num, num, mult);
+    }
+
+    int multRecursive(int num, int newnum, int mult) {
+        if (mult == 1) return newnum;
+
+//        System.out.println("NUM + " + num + " MUL : " + mult);
+        return multRecursive(num, newnum + num, mult - 1);
+    }
+
+    int mult2(int num1, int num2) {
+        if (num1 == 0 || num2 == 0) {
+            return 0;
+        }
+
+        else if( num2 < 0 ) {
+            return - num1 + mult2(num1, num2 + 1);
+        }
+
+        else {
+            return num1 + mult2(num1, num2 - 1);
+        }
+    }
 }

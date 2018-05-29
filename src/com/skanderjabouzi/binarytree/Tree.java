@@ -61,9 +61,9 @@ public class Tree {
         return findNode(root, value);
     }
 
-    public void deleteNode(int value) {
+    public void deleteNode(Node root, int value) {
 
-        Node node = nodeExists(value);
+        Node node = findNode(root, value);
 
         if (node.left == null && node.right == null) {
             System.out.println("Node No Children : " + node.value);
@@ -82,26 +82,33 @@ public class Tree {
             node.left.parent = node.parent;
         } else {
             System.out.println("Node Two Children: " + node.value);
-            System.out.println("Node : " + node.value + " Parent : " + node.parent.value + " Left : " + (node.left != null ? node.left.value : "NULL") + " Right : " + (node.right != null ? node.right.value : "NULL"));
+            System.out.println("Node : " + node.value + " Parent : " + (node.parent != null ? node.parent.value : "NULL") + " Left : " + (node.left != null ? node.left.value : "NULL") + " Right : " + (node.right != null ? node.right.value : "NULL"));
             Node smallVal = findMinimumValue(node.right);
-            smallVal.left = node.left;
-            smallVal.right = node.right;
-            smallVal.parent = node.parent;
-            node.left.parent = smallVal;
-            node.right.parent = smallVal;
-            if (node.value > node.parent.value) {
-                smallVal.parent.right = null;
-                node.parent.right = smallVal;
-            } else {
-                smallVal.parent.left = null;
-                node.parent.left = smallVal;
-            }
-            System.out.println("Node : " + node.value + " Parent : " + node.parent.value + " Left : " + (node.left != null ? node.left.value : "NULL") + " Right : " + (node.right != null ? node.right.value : "NULL"));
-            System.out.println("Smallest : " + smallVal.value + " Parent : " + smallVal.parent.value + " Left : " + (smallVal.left != null ? smallVal.left.value : "NULL") + " Right : " + (smallVal.right != null ? smallVal.right.value : "NULL"));
-            System.out.println("Parent : " + (smallVal.parent.left != null ? smallVal.parent.left.value : "NULL")  + " - " + (smallVal.parent != null ? smallVal.parent.value : "NULL"));
+            int temp = smallVal.value;
+            deleteNode(node, smallVal.value);
+            node.value = temp;
+//            smallVal.left = node.left;
+//            smallVal.right = node.right;
+//            smallVal.parent = node.parent;
+//            node.left.parent = smallVal;
+//            node.right.parent = smallVal;
+//            if (node.value > node.parent.value) {
+//                smallVal.parent.right = null;
+//                node.parent.right = smallVal;
+//            } else {
+//                smallVal.parent.left = null;
+//                node.parent.left = smallVal;
+//            }
+//            System.out.println("Node : " + node.value + " Parent : " + node.parent.value + " Left : " + (node.left != null ? node.left.value : "NULL") + " Right : " + (node.right != null ? node.right.value : "NULL"));
+//            System.out.println("Smallest : " + smallVal.value + " Parent : " + smallVal.parent.value + " Left : " + (smallVal.left != null ? smallVal.left.value : "NULL") + " Right : " + (smallVal.right != null ? smallVal.right.value : "NULL"));
+//            System.out.println("Parent : " + (smallVal.parent.left != null ? smallVal.parent.left.value : "NULL")  + " - " + (smallVal.parent != null ? smallVal.parent.value : "NULL"));
         }
 
         node = null;
+    }
+
+    public void delete(int value) {
+        deleteNode(root, value);
     }
 
     private Node findMinimumValue(Node node) {
@@ -112,5 +119,17 @@ public class Tree {
 
         System.out.println("Small Value Go Left: " + node.value);
         return findMinimumValue(node.left);
+    }
+
+    private void treeTraversal(Node node) {
+        if (node != null) {
+            treeTraversal(node.left);
+            System.out.print(" " + node.value);
+            treeTraversal(node.right);
+        }
+    }
+
+    public void traverse() {
+        treeTraversal(root);
     }
 }

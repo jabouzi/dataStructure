@@ -155,11 +155,13 @@ public class main {
         System.out.println();
         System.out.println(bt.nodeExists(11));
         System.out.println();
-        bt.deleteNode(9);
+        bt.traverse();
+        System.out.println();
+        bt.delete(9);
         System.out.println();
         System.out.println(bt.nodeExists(10));
         System.out.println();
-        bt.deleteNode(4);
+        bt.delete(4);
         System.out.println();
         System.out.println(bt.nodeExists(4));
         System.out.println();
@@ -188,12 +190,30 @@ public class main {
         bt.add(18);
 
         System.out.println();
-        bt.deleteNode(6);
+        bt.delete(6);
         System.out.println();
         System.out.println(bt.nodeExists(4));
         System.out.println();
         System.out.println(bt.nodeExists(8));
         System.out.println();
         System.out.println(bt.nodeExists(6));
+
+        System.out.println();
+        bt.delete(10);
+//        System.out.println(recursion.mult(5, 3));
+//        System.out.println(recursion.mult(4, 5));
+//        System.out.println(recursion.mult(10, 9));
+//        System.out.println(recursion.mult(3, 7));
+//        System.out.println(recursion.mult2(3, 7));
+        int a = 13494;
+        int b = 22323;
+//        System.out.println("X" + recursion.mult2(a, b));
+//        System.out.println(a*b);
+//        System.out.println(recursion.mult(13494, 22323));
+
+        bt.traverse();
+        System.out.println();
+        bt.delete(10);
+        bt.traverse();
     }
 }
