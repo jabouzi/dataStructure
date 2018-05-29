@@ -38,7 +38,7 @@ public class Tree {
     private Node findNode(Node current, int value) {
 
         if (current == null) {
-            System.out.println("Node Not Found");
+            System.out.println("Node Not Found : " + value);
             return null;
         }
 
@@ -65,6 +65,8 @@ public class Tree {
 
         Node node = findNode(root, value);
 
+        if (node == null) return;
+
         if (node.left == null && node.right == null) {
             System.out.println("Node No Children : " + node.value);
             if (node.value > node.parent.value) {
@@ -85,26 +87,11 @@ public class Tree {
             System.out.println("Node : " + node.value + " Parent : " + (node.parent != null ? node.parent.value : "NULL") + " Left : " + (node.left != null ? node.left.value : "NULL") + " Right : " + (node.right != null ? node.right.value : "NULL"));
             Node smallVal = findMinimumValue(node.right);
             int temp = smallVal.value;
+            System.out.println("DELETE SMALLVAL " + smallVal.value);
             deleteNode(node, smallVal.value);
+            System.out.println("Replace deleted node : " + node.value + " = " + temp );
             node.value = temp;
-//            smallVal.left = node.left;
-//            smallVal.right = node.right;
-//            smallVal.parent = node.parent;
-//            node.left.parent = smallVal;
-//            node.right.parent = smallVal;
-//            if (node.value > node.parent.value) {
-//                smallVal.parent.right = null;
-//                node.parent.right = smallVal;
-//            } else {
-//                smallVal.parent.left = null;
-//                node.parent.left = smallVal;
-//            }
-//            System.out.println("Node : " + node.value + " Parent : " + node.parent.value + " Left : " + (node.left != null ? node.left.value : "NULL") + " Right : " + (node.right != null ? node.right.value : "NULL"));
-//            System.out.println("Smallest : " + smallVal.value + " Parent : " + smallVal.parent.value + " Left : " + (smallVal.left != null ? smallVal.left.value : "NULL") + " Right : " + (smallVal.right != null ? smallVal.right.value : "NULL"));
-//            System.out.println("Parent : " + (smallVal.parent.left != null ? smallVal.parent.left.value : "NULL")  + " - " + (smallVal.parent != null ? smallVal.parent.value : "NULL"));
         }
-
-        node = null;
     }
 
     public void delete(int value) {
