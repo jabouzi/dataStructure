@@ -1,5 +1,7 @@
 package com.skanderjabouzi;
 
+import com.skanderjabouzi.binarytree.Tree;
+
 public class Matrix {
 
     public int[][] zeroMatrix(int[][] matrix) {
@@ -107,10 +109,52 @@ public class Matrix {
         System.out.println();
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
-                System.out.printf("%4d", matrix[row][col]);
+                System.out.printf(row + "," + col + " : " + matrix[row][col] + " | ");
             }
             System.out.println();
         }
         System.out.println();
+    }
+
+    public void printMatrix2(int[][] matrix) {
+        for (int r = 0, c = 0; r < matrix.length;) {
+            if (c < matrix[r].length) {
+                System.out.print(matrix[r][c] + " ");
+                ++c;
+            } else {
+                c = 0;
+                ++r;
+            }
+        }
+    }
+
+    public void printMatrix3(int[][] matrix) {
+        for(int i = 0 ; i < matrix.length * matrix[0].length ; i++)
+            System.out.print(matrix[i % matrix.length][i / matrix.length] + " ");
+    }
+
+    public void treeFromMatrix3(Tree tree, int[][] matrix) {
+        for(int i = 0 ; i < matrix.length * matrix[0].length ; i++)
+            tree.add(matrix[i % matrix.length][i / matrix.length]);
+    }
+
+    public void treeFromMatrix2(Tree tree, int[][] matrix) {
+        for (int r = 0, c = 0; r < matrix.length;) {
+            if (c < matrix[r].length) {
+                tree.add(matrix[r][c]);
+                ++c;
+            } else {
+                c = 0;
+                ++r;
+            }
+        }
+    }
+
+    public void treeFromMatrix(Tree tree, int[][] matrix) {
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[row].length; col++) {
+                tree.add(matrix[row][col]);
+            }
+        }
     }
 }

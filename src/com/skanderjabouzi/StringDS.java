@@ -172,4 +172,26 @@ public class StringDS {
         return false;
     }
 
+//    cpis
+    boolean countPatterns(String s, String p){
+        int count = 0;
+        for (int i = 0; i < s.length() - (p.length() - 1); i++) {
+            if (s.charAt(i) == p.charAt(0)) {
+                if (s.substring(i, p.length() + i).equals(p)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    void countInText(String[] s, String p) {
+        for(int i = 0; i < s.length; i++) {
+            if (countPatterns(s[i], p)) {
+                System.out.println(s[i]);
+            }
+        }
+    }
+
 }

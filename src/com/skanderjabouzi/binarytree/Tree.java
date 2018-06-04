@@ -1,8 +1,10 @@
 package com.skanderjabouzi.binarytree;
 
+import java.util.ArrayList;
+
 public class Tree {
 
-    Node root;
+    public Node root;
 
     private Node addRecursive(Node current, Node[] previous, int value) {
 
@@ -108,15 +110,40 @@ public class Tree {
         return findMinimumValue(node.left);
     }
 
-    private void treeTraversal(Node node) {
+    private void preorder(Node node) {
         if (node != null) {
-            treeTraversal(node.left);
             System.out.print(" " + node.value);
-            treeTraversal(node.right);
+            preorder(node.left);
+            preorder(node.right);
         }
     }
 
-    public void traverse() {
-        treeTraversal(root);
+    private void inorder(Node node, ArrayList nodes) {
+        if (node != null) {
+            inorder(node.left, nodes);
+            nodes.add(node.value);
+            System.out.print(" " + node);
+            inorder(node.right, nodes);
+        }
+    }
+
+    private void postorder(Node node) {
+        if (node != null) {
+            postorder(node.left);
+            postorder(node.right);
+            System.out.print(" " + node.value);
+        }
+    }
+
+    public void preorderTraverse() {
+        preorder(root);
+    }
+
+    public void inorderTraverse(ArrayList nodes) {
+        inorder(root, nodes);
+    }
+
+    public void postorderTraverse() {
+        postorder(root);
     }
 }

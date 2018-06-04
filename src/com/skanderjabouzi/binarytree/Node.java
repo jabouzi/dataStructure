@@ -1,6 +1,6 @@
 package com.skanderjabouzi.binarytree;
 
-public class Node {
+public class Node<E> {
 
     int value;
     Node left;
